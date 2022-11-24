@@ -2,6 +2,7 @@ package main
 
 import (
 	"crypto/sha1"
+	"encoding/hex"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -39,7 +40,7 @@ func wx(c *gin.Context) {
 	sha.Write([]byte(ss))
 	bs := sha.Sum(nil)
 
-	bss := string(bs)
+	bss := hex.EncodeToString(bs)
 
 	fmt.Printf("bs:%s bss:%s", bs, bss)
 
