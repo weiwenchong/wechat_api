@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"wechat_api/handler"
+	"wechat_api/log"
 )
 
 func main() {
@@ -14,7 +15,7 @@ func main() {
 		wxGroup.POST("", handler.Post)
 	}
 
-	gin.Logger()
+	log.Infof("service start")
 
 	r.Run("0.0.0.0:80")
 }

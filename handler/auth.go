@@ -19,8 +19,6 @@ func Auth(c *gin.Context) {
 	nonce := c.Query("nonce")
 	echostr := c.Query("echostr")
 
-	fmt.Printf("wx url %s %s %s %s", signature, timestamp, nonce, echostr)
-
 	if signature == "" || timestamp == "" || nonce == "" || echostr == "" {
 		return
 	}
@@ -34,8 +32,6 @@ func Auth(c *gin.Context) {
 	bs := sha.Sum(nil)
 
 	bss := hex.EncodeToString(bs)
-
-	fmt.Printf("bs:%s bss:%s", bs, bss)
 
 	if bss == signature {
 		c.String(http.StatusOK, echostr)
