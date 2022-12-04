@@ -48,7 +48,7 @@ func Start(name string, total int64) int64 {
 
 func (c *Christmas) start(name string) {
 	cache.Client.HSet(c.Key, owner, name)
-	cache.Client.HSet(c.Key, total, total)
+	cache.Client.HSet(c.Key, total, c.Total)
 	cache.Client.Expire(c.Key, 24*time.Hour)
 	return
 }
