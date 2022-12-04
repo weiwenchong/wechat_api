@@ -124,7 +124,7 @@ func (c *Christmas) executeAssignment() (err error) {
 func genId() (id int64) {
 	for {
 		id = rand.Int63n(9000) + 1000
-		if cache.Client.Exists(fmt.Sprintf(christmas_id, id)).Val() == 1 {
+		if cache.Client.Exists(fmt.Sprintf(christmas_id, id)).Val() != 1 {
 			break
 		}
 	}
