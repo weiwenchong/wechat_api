@@ -26,6 +26,7 @@ func Post(c *gin.Context) {
 		return
 	}
 	log.Infof("Post receive msg :%+v", receiveMsg)
+	log.Infof("Post receive msg content :%s", receiveMsg.Content)
 
 	// todo msgid去重
 	// todo 默认返回success
