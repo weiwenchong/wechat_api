@@ -39,6 +39,8 @@ func Post(c *gin.Context) {
 	receiveMsg.Content = strings.Trim(receiveMsg.Content, "[")
 	receiveMsg.Content = strings.Trim(receiveMsg.Content, "]")
 
+	log.Infof("Post receive msg content :%s", receiveMsg.Content)
+
 	// todo msgid去重
 	// todo 默认返回success
 
