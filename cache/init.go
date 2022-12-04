@@ -2,6 +2,7 @@ package cache
 
 import (
 	"github.com/go-redis/redis"
+	"time"
 	"wechat_api/log"
 )
 
@@ -15,4 +16,6 @@ func init() {
 		DB:       0,
 	})
 	log.Infof("cache init succeed")
+
+	Client.Set("1", "1", time.Hour)
 }
