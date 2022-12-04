@@ -20,6 +20,7 @@ func ReplyMsg(receiveMsg *model.ReceiveMsg) (result string, err error) {
 		return
 	}
 	log.Infof("ReplyMsg receiveMsg fields %+v", fields)
+	log.Infof("ReplyMsg receiveMsg fields len%d", len(fields))
 
 	if fields[0] == "圣诞节" {
 		var total int64

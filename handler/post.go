@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
+	"strings"
 	"time"
 	"wechat_api/log"
 	"wechat_api/model"
@@ -27,6 +28,9 @@ func Post(c *gin.Context) {
 	}
 	log.Infof("Post receive msg :%+v", receiveMsg)
 	log.Infof("Post receive msg content :%s", receiveMsg.Content)
+
+	receiveMsg.Content = strings.Trim(receiveMsg.Content, "[")
+	receiveMsg.Content = strings.Trim(receiveMsg.Content, "]")
 
 	// todo msgid去重
 	// todo 默认返回success
