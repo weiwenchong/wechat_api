@@ -4,7 +4,6 @@ import (
 	"encoding/xml"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
-	"strings"
 	"time"
 	"wechat_api/log"
 	"wechat_api/model"
@@ -36,8 +35,18 @@ func Post(c *gin.Context) {
 	log.Infof("Post receive msg :%+v", receiveMsg)
 	log.Infof("Post receive msg content :%s", receiveMsg.Content)
 
-	receiveMsg.Content = strings.Trim(receiveMsg.Content, "[")
-	receiveMsg.Content = strings.Trim(receiveMsg.Content, "]")
+	//receiveMsg.Content = strings.Trim(receiveMsg.Content, "[")
+	//receiveMsg.Content = strings.Trim(receiveMsg.Content, "]")
+	rs := []rune(receiveMsg.Content)
+	rsE := make([]rune, 0)
+	for i, r := range rs {
+		if i == 0 || i == len(rs)-1 {
+			continue
+		}
+		rsE = append(rsE, r)
+	}
+
+	receiveMsg.Content = string(rsE)
 
 	log.Infof("Post receive msg content :%s", receiveMsg.Content)
 
