@@ -14,6 +14,12 @@ import (
 func Post(c *gin.Context) {
 	log.Infof("Post call")
 
+	defer func() {
+		if err := recover(); err != nil {
+			log.Errorf("Post err:%+v", err)
+		}
+	}()
+
 	data, err := ioutil.ReadAll(c.Request.Body)
 	if err != nil {
 		log.Errorf("Post read body err:%v", err)
