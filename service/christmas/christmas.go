@@ -36,6 +36,7 @@ func NewChristmas(Id int64) *Christmas {
 }
 
 func Start(name string, total int64) int64 {
+	log.Infof("Start call")
 	Id := genId()
 	log.Infof("%d", Id)
 	c := NewChristmas(Id)

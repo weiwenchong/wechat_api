@@ -17,6 +17,7 @@ func Post(c *gin.Context) {
 	defer func() {
 		if err := recover(); err != nil {
 			log.Errorf("Post err:%+v", err)
+			c.String(200, "success")
 		}
 	}()
 

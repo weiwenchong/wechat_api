@@ -23,6 +23,7 @@ func ReplyMsg(receiveMsg *model.ReceiveMsg) (result string, err error) {
 	log.Infof("ReplyMsg receiveMsg fields len%d", len(fields))
 
 	if fields[0] == "圣诞节" {
+		log.Infof("圣诞节 call")
 		var total int64
 		if len(fields) != 2 {
 			return "", invalidParam
