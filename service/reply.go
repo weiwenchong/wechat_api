@@ -14,7 +14,7 @@ import (
 var invalidParam = errors.New("错误的指令")
 
 func ReplyMsg(receiveMsg *model.ReceiveMsg) (result string, err error) {
-	fields := util.FilterEmptyString(strings.Split(receiveMsg.Content, ""))
+	fields := util.FilterEmptyString(strings.Split(receiveMsg.Content, " "))
 	if len(fields) == 0 {
 		err = invalidParam
 		return
