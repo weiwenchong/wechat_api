@@ -2,16 +2,16 @@ package handler
 
 import (
 	"encoding/xml"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"time"
 	"wechat_api/log"
 	"wechat_api/model"
+	"wechat_api/service"
 )
 
 func Post(c *gin.Context) {
-	fmt.Printf("Post call")
+	log.Infof("Post call")
 
 	data, err := ioutil.ReadAll(c.Request.Body)
 	if err != nil {
@@ -25,14 +25,22 @@ func Post(c *gin.Context) {
 		log.Errorf("Post unmarshal msg err:%v", err)
 		return
 	}
-	log.Infof("Post receive msg :%v", receiveMsg)
+	log.Infof("Post receive msg :%+v", receiveMsg)
+
+	// todo msgid去重
+	// todo 默认返回success
+
+	msg, err := service.ReplyMsg(receiveMsg)
+	if err != nil {
+		msg = err.Error()
+	}
 
 	replyMsg := &model.ReplyMsg{
 		ToUserName:   receiveMsg.FromUserName,
 		FromUserName: receiveMsg.ToUserName,
 		CreateTime:   time.Now().Unix(),
 		MsgType:      "text",
-		Content:      receiveMsg.Content,
+		Content:      msg,
 	}
 
 	replyData, err := xml.Marshal(replyMsg)
