@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"wechat_api/log"
 	"wechat_api/model"
 	"wechat_api/service/christmas"
 	"wechat_api/util"
@@ -18,6 +19,7 @@ func ReplyMsg(receiveMsg *model.ReceiveMsg) (result string, err error) {
 		err = invalidParam
 		return
 	}
+	log.Infof("ReplyMsg receiveMsg fields %+v", fields)
 
 	if fields[0] == "圣诞节" {
 		var total int64

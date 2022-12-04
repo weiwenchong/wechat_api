@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"time"
 	"wechat_api/cache"
+	"wechat_api/log"
 	"wechat_api/util"
 )
 
@@ -36,6 +37,7 @@ func NewChristmas(Id int64) *Christmas {
 
 func Start(name string, total int64) int64 {
 	Id := genId()
+	log.Infof("%d", Id)
 	c := NewChristmas(Id)
 	c.Total = total
 	c.start(name)
